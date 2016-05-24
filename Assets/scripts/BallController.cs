@@ -14,9 +14,17 @@ public class BallController : MonoBehaviour {
 	}
 
     void Update() {
-        if (Input.GetButtonDown("Fire1") && !started) {
+        if (Input.GetButtonDown("Jump") && !started) {
+			transform.parent = null;
             started = true;
-            rb.AddForce(new Vector3(1, 1) * speed * 5);
+
+			Vector3 force = new Vector3 (1, 1) * speed * 5;
+			if (Random.Range (0f, 1f) > 0.5f) {
+				Debug.Log ("force");
+				force.x *= -1;
+			}
+
+            rb.AddForce(force);
         }
     }
 }
